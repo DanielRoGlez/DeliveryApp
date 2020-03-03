@@ -1,0 +1,133 @@
+<div class="container app">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1 class="text-center" >
+        {{title}}
+      </h1>
+    </div>
+    <div class="col-sm-4">
+      <div class="alert alert-success alert-dismissable" *ngIf="msg">
+        <a href="#" class="close" (click)="closeAlert()">
+          &times;
+        </a>
+        {{msg}}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    
+    <div class="col-sm-12">
+      
+      <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Add/Edit Country</th>
+            </tr>
+          </thead>
+          <tbody>
+              <form class="from-horizontal" ></form>
+              <div class="form-group">
+                <label for="countryName" class="control-label col-sm-2">
+                  Country: 
+                </label>
+
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="id" name="countryName" [(ngModel)]="model.countryName" placeholder="Enter a new country">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="population" class="control-label col-sm-2">
+                  Population (millions): 
+                </label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="id" name="population" [(ngModel)]="model.population" placeholder="Population of the country">
+                </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="col-sm-10 col-sm-offset-2">
+                   
+                      <button type="submit" class="btn btn-success" (click)="addcountry()">
+                       Submit
+                      </button>
+                    
+                  </div>
+              </div>
+  
+          </tbody>
+        
+      </table>
+    
+    </div> 
+  </div>
+
+
+  <div class="row">
+    <div class="col-sm-8">
+      <!--h2>Read Data</h2-->
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>CountryName</th>
+            <th>Population (millions)</th>
+            <th>Operations</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let country of countries; let i= index">
+            <td>{{country.countryName}}</td>
+            <td>{{country.population}}</td>
+            <td>
+              <a (click)="editcountry(i)" class="btn btn-success">
+                Edit  
+              </a>
+              <a>|</a>
+              <a (click)="deletecountry(i)" class="btn btn-danger">
+                Delete  
+              </a>
+            </td>
+            
+          </tr>
+
+        </tbody>
+      </table>
+
+    </div>
+
+  
+  <div class="col-sm-4" [hidden]="hideUpdate">
+      <h3>Update Country</h3>
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label for="name" class="control-label col-sm-2">
+            Country
+          </label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="id"
+              name="countryName" [(ngModel)]="model2.countryName"
+              placeholder="Enter a New Country">
+          </div>
+        </div>
+          <div class="form-group">
+              <label for="name" class="control-label col-sm-2">
+                Population
+               </label>
+               <div class="col-sm-10">
+                  <input type="text" class="form-control" id="id"
+                  name="population" [(ngModel)]="model2.population"
+                  placeholder="Enter number of population">
+              </div>
+          </div>
+
+          <div class="form-group">
+              <div class="col-sm-10 col-sm-offset-2">
+                <button type="submit" class="btn btn-success" (click)="updatecountry()">
+                  Save
+                </button>
+              </div>
+          </div>    
+      </form>
+    </div>
+  </div>
+</div>
